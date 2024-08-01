@@ -2,10 +2,19 @@
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
 
+let task = []
+
 // Todo: create a function to generate a unique task id
-function generateTaskId() {
-//assign id to each task array
-}
+function generateTaskId(dueDate) {
+    const formattedDueDate = day.js(dueDate);
+    if (formattedDueDate.isTomorrow() || formattedDueDate.isToday()) {
+        return {cardBg: 'bg-warning', btnBorder: null};
+    }
+    if (formattedDueDate.isSameOrBefore()) {
+        return { cardBg: 'bg-danger test-white', btnBorder: 'border-white'};
+    }
+        return { cardBg: null, btnBorder: null}
+};
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
