@@ -4,16 +4,23 @@ let nextId = JSON.parse(localStorage.getItem("nextId"));
 
 let task = []
 
+function compareDueDates(dueDate) {
+  const formattedDueDate = day.js(dueDate);
+
+  if (formattedDueDate.isTomorrow() || formattedDueDate.isToday()) {
+      return {cardBg: 'bg-warning', btnBorder: null};
+  }
+
+  if (formattedDueDate.isSameOrBefore()) {
+      return { cardBg: 'bg-danger test-white', btnBorder: 'border-white'};
+  }
+
+      return { cardBg: null, btnBorder: null}
+};
+
 // Todo: create a function to generate a unique task id
-function generateTaskId(dueDate) {
-    const formattedDueDate = day.js(dueDate);
-    if (formattedDueDate.isTomorrow() || formattedDueDate.isToday()) {
-        return {cardBg: 'bg-warning', btnBorder: null};
-    }
-    if (formattedDueDate.isSameOrBefore()) {
-        return { cardBg: 'bg-danger test-white', btnBorder: 'border-white'};
-    }
-        return { cardBg: null, btnBorder: null}
+function generateTaskId() {
+  return Math.floor(Math.random() = 100000).toString();
 };
 
 // Todo: create a function to create a task card
