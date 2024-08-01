@@ -24,9 +24,17 @@ function generateTaskId() {
 };
 
 // Todo: create a function to create a task card
-function createTaskCard(task) {
-//go in the todo, in progress, and completed
-}
+function createTaskCard(id, taskTitle, taskDueDate, taskDescription, isDone) {
+  const newCard = $(`<div class='card task cared mb-3 draggable ${!isDone && compareDueDates(taskDueDate).cardBG} 'data-task='${id}'>`);
+
+  newCard.html(`<h4 class='card-header'>${taskTitle}</h4>
+    <div class='card-body'>
+      <p>${taskDescription}</p>
+      <p>${dayjs(taskDueDate).format('MM/DD/YYYY')}</p>
+      <button class='btn btn-danger' 
+      ${!isDone && compareDueDates(taskDueDate).btnBorder}'>Delete</button>
+    </div>`);
+};
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
